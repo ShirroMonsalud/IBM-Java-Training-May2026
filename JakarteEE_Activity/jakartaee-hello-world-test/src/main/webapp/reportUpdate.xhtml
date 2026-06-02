@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core"
+      xmlns:p="http://primefaces.org/ui">
+    <f:metadata>
+        <f:viewParam name="id" value="#{reportUpdateBean.id}" />
+        <f:viewAction action="#{reportUpdateBean.init}" />
+    </f:metadata>
+    <h:head>
+        <title>Update Report</title>
+        <link rel="stylesheet" href="https://unpkg.com/primeflex@latest/primeflex.css" />
+    </h:head>
+    <h:body>
+        <div class="m-4">
+            <h2>Update Report</h2>
+            <h:form>
+                <h:inputHidden value="#{reportUpdateBean.id}" />
+                
+                <div class="ui-fluid">
+                    <div class="field">
+                        <h:outputText for="title-input" value="Title" />
+                        <p:inputText id="title-input" value="#{reportUpdateBean.title}" />
+                        <h:message for="title-input" style="color: red" /> 
+                    </div>
+                    <div class="field">
+                        <h:outputText for="detail-input" value="Detail" />
+                        <p:inputTextarea id="detail-input" value="#{reportUpdateBean.detail}" rows="6" />
+                    </div>
+                </div>
+                <div class="flex gap-2 mt-3">
+                    <p:commandButton value="Save Changes" ajax="false" action="#{reportUpdateBean.update()}" styleClass="p-button-success"/>
+                    <p:button outcome="/reportList.xhtml" value="Cancel" styleClass="p-button-secondary" />
+                </div>
+            </h:form>
+        </div>
+    </h:body>
+</html>

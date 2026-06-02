@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core"
+      xmlns:p="http://primefaces.org/ui">
+    <f:metadata>
+        <f:viewParam name="id" value="#{reportViewBean.id}" />
+        <f:viewAction action="#{reportViewBean.init}" />
+    </f:metadata>
+    <h:head>
+        <title>View Report</title>
+        <link rel="stylesheet" href="https://unpkg.com/primeflex@latest/primeflex.css" />
+    </h:head>
+    <h:body>
+        <div class="m-4">
+            <h2>Report Details</h2>
+            <p:card style="width: 25rem; margin-bottom: 2em">
+                <f:facet name="title">
+                    <h:outputText value="#{reportViewBean.report.title}" />
+                </f:facet>
+                <p>
+                    <h:outputText value="#{reportViewBean.report.detail}" style="white-space: pre-wrap;"/>
+                </p>
+            </p:card>
+            <p:button outcome="/reportList.xhtml" value="Back to List" icon="pi pi-arrow-left" />
+        </div>
+    </h:body>
+</html>
