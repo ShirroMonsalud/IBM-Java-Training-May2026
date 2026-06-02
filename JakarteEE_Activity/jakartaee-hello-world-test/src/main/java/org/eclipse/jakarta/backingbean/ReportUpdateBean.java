@@ -3,6 +3,7 @@ package org.eclipse.jakarta.backingbean;
 import org.eclipse.jakarta.dto.ReportDto;
 import org.eclipse.jakarta.infrastracture.repository.ReportRepository;
 import jakarta.enterprise.context.RequestScoped;
+import jakarta.faces.context.FacesContext;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import jakarta.validation.constraints.NotBlank;
@@ -14,19 +15,33 @@ public class ReportUpdateBean {
 	
 	@NotBlank(message = "You cannot leave the title blank.")
 	private String title;
+	
+	@NotBlank(message = "You cannot leave the title blank.")
 	private String detail;
 	
 	@Inject
 	private ReportRepository reportRepository;
 	
+	@Inject
+	private FacesContext facesContext;
+	
 	public void init() {
-		if (id != null) {
-			ReportDto report = reportRepository.findbyId(id);
-			if (report != null) {
-				this.title = report.getTitle();
-				this.detail = report.getDetail();
-			}
+		String idParam = facesContext.getExternalContext()
+				.getRequestParameterMap()
+				.get("id");
+		
+		if (idParam == null || idParam.isBlank()) {
+			return;
 		}
+		
+		this.id = Long.parseLong(idParam);
+		
+		ReportDto report = reportRepository.findbyId(this.id);
+		
+		if (report != null) {
+            this.title = report.getTitle();
+            this.detail = report.getDetail();
+        }
 	}
 	
 	public String update() {

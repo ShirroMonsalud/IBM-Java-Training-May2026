@@ -34,7 +34,7 @@ class ReportListBeanTest {
 
     @AfterEach
     void tearDown() {
-        repository = null;
+    	repository = null;
         testReport1 = null;
         testReport2 = null;
         System.out.println("@AfterEach: Test cleanup completed");

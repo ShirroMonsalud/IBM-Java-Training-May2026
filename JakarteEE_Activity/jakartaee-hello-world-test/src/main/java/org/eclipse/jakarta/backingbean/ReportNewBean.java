@@ -12,6 +12,8 @@ import jakarta.validation.constraints.NotBlank;
 public class ReportNewBean{
     @NotBlank(message = "You cannot leave the title blank.")
     private String title;
+    
+    @NotBlank(message = "You cannot leave the title blank.")
     private String detail;
 
     @Inject

@@ -1,6 +1,5 @@
 package org.eclipse.jakarta.backingbean;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.jakarta.dto.ReportDto;
